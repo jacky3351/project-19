@@ -1,6 +1,6 @@
 var boy, boyImage
 var background, backgroundImage
-var obstacle, obstacleImage, obstaclesGroup
+var obstacle, obstacle2, obstacleImage, obstaclesGroup
 var score
 var play = 1
 var end = 0
@@ -22,6 +22,7 @@ boy.scale = 0.1
 
 background = createSprite(800, 180, 5000, 200)
 background.addImage("background", backgroundImage)
+background.scale = 1.2
 
 obstaclesGroup = createGroup()
 
@@ -29,7 +30,7 @@ boy.setCollider("circle", 0, 0, 640)
 
 score = 0
 
-invisibleGround = createSprite(200, 770, 200000, 200)
+invisibleGround = createSprite(200, 1000, 200000, 200)
 invisibleGround.visible = false
 }
 
@@ -43,9 +44,6 @@ text("score " + score, 800, 60)
         }
         if(keyDown("space")&& boy.y >130){
             boy.velocityY = -9 
-        }
-        if(boy.y <130){
-            boy.velocityY = 9
         }
         if(boy.y <300){
             boy.velocityY = 9
@@ -68,13 +66,19 @@ drawSprites()
 }
 
 function spawnObstacles(){
-    if (frameCount % 90 === 0){
-        var obstacle = createSprite(600, 600, 10, 40)
+    if (frameCount % 180 === 0){
+        var obstacle = createSprite(1200, 600, 10, 40)
         obstacle.addImage("obstacle", obstacleImage)
         obstacle.scale = 0.05
         obstacle.velocityX = -6
         obstacle.lifetime = 300
         obstaclesGroup.add(obstacle);
+        obstacle2 = createSprite(1600, 500, 10, 40)
+        obstacle2.addImage("obstacle", obstacleImage)
+        obstacle2.scale = 0.05
+        obstacle2.velocityX = -6
+        obstacle2.lifetime = 300
+        obstaclesGroup.add(obstacle2);
     }
 }
 
